@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { getConversationById } from "@/app/actions/getConversationById";
 import { getMessages } from "@/app/actions/getMessages";
 import { EmptyState } from "@/app/components/EmptyState";
@@ -12,9 +10,9 @@ interface IParams {
   conversationId: string;
 }
 
-const ConversationId: FC<IParams> = async ({ conversationId }) => {
-  const conversation = await getConversationById(conversationId);
-  const messages = await getMessages(conversationId);
+const ConversationId = async ({ params }: { params: IParams }) => {
+  const conversation = await getConversationById(params.conversationId);
+  const messages = await getMessages(params.conversationId);
 
   if (!conversation) {
     return (
@@ -30,7 +28,7 @@ const ConversationId: FC<IParams> = async ({ conversationId }) => {
     <div className="lg:pl-80 h-full">
       <div className="h-full flex flex-col">
         <Header conversation={conversation} />
-        <Body />
+        <Body initialMessages={messages} />
         <Form />
       </div>
     </div>
