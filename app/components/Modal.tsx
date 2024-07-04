@@ -10,7 +10,7 @@ import { FC, Fragment, ReactNode } from "react";
 import { IoClose } from "react-icons/io5";
 
 interface ModalProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   onClose: () => void;
   children: ReactNode;
 }
